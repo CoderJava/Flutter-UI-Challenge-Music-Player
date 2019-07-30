@@ -74,6 +74,8 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(
                       color: Color(0xFF7D9AFF),
                       fontSize: 14.0,
+                      fontFamily: "Campton_Light",
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                   top: constraints.maxHeight - 160.0,
@@ -121,8 +123,8 @@ class HomeScreen extends StatelessWidget {
                       child: Text(
                         song.title,
                         style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: "Campton_Light",
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -156,15 +158,17 @@ class HomeScreen extends StatelessWidget {
           "Popular",
           style: TextStyle(
             color: Colors.black,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
             fontSize: 24.0,
+            fontFamily: "Campton_Light",
           ),
         ),
         Text(
           "Show all",
           style: TextStyle(
             color: Color(0xFF7D9AFF),
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
+            fontFamily: "Campton_Light",
           ),
         ),
       ],
@@ -186,7 +190,7 @@ class HomeScreen extends StatelessWidget {
           ),
           backgroundColor: Color(0xFF7D9AFF),
           onPressed: () {
-            // TODO: do something in here
+            print("play all tapped");
           },
         ),
       ),
@@ -243,7 +247,6 @@ class HomeScreen extends StatelessWidget {
     listSong.add(Song(title: "Thank u, next", duration: "3:27"));
     listSong.add(Song(
         title: "Break up with your girlfriend, i'm bored", duration: "3:10"));
-    listSong.add(Song(title: "Test", duration: "0:00"));
   }
 }
 

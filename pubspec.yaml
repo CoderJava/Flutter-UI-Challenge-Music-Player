@@ -79,3 +79,6 @@ flutter:
     - family: CoralPen
       fonts:
         - asset: fonts/CoralPen.ttf
+    - family: Campton_Light
+      fonts:
+        - asset: fonts/Campton_Light.ttf
