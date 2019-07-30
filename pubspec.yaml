@@ -46,6 +46,9 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - assets/ariana_grande_cover_no_tears_left_to_cry.jpg
+    - assets/ariana_grande_artist_photo.jpg
+    - assets/ariana_grande_artist_photo_2.jpg
+    - assets/ariana_grande_artist_photo_3.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

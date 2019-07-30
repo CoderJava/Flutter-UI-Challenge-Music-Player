@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'music_player_screen.dart';
+
 void main() => runApp(App());
+
+GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
 
 class App extends StatelessWidget {
   @override
@@ -16,15 +20,26 @@ class App extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   List<Song> listSong = List();
+
+  @override
+  void initState() {
+    initListSong();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
-    initListSong();
 
     return Scaffold(
+      key: scaffoldState,
       body: Stack(
         children: <Widget>[
           _buildWidgetAlbumCover(mediaQuery),
@@ -117,30 +132,35 @@ class HomeScreen extends StatelessWidget {
               itemCount: listSong.length,
               itemBuilder: (BuildContext context, int index) {
                 Song song = listSong[index];
-                return Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        song.title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontFamily: "Campton_Light",
+                return GestureDetector(
+                  onTap: () {
+                    _navigatorToMusicPlayerScreen(song.title);
+                  },
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          song.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: "Campton_Light",
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    Text(
-                      song.duration,
-                      style: TextStyle(
+                      Text(
+                        song.duration,
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      SizedBox(width: 24.0),
+                      Icon(
+                        Icons.more_horiz,
                         color: Colors.grey,
                       ),
-                    ),
-                    SizedBox(width: 24.0),
-                    Icon(
-                      Icons.more_horiz,
-                      color: Colors.grey,
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             ),
@@ -190,11 +210,18 @@ class HomeScreen extends StatelessWidget {
           ),
           backgroundColor: Color(0xFF7D9AFF),
           onPressed: () {
-            print("play all tapped");
+            _navigatorToMusicPlayerScreen(listSong[0].title);
           },
         ),
       ),
     );
+  }
+
+  void _navigatorToMusicPlayerScreen(String title) {
+    Navigator.of(scaffoldState.currentContext)
+        .push(MaterialPageRoute(builder: (context) {
+      return MusicPlayerScreen(title);
+    }));
   }
 
   Widget _buildWidgetActionAppBar(MediaQueryData mediaQuery) {
